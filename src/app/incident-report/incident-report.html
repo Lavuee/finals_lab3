@@ -1,0 +1,25 @@
+<h2>Incident Reporting</h2>
+
+<form (ngSubmit)="saveRecord()">
+  <input type="date" [(ngModel)]="formData.date" name="date" required>
+  <input type="text" [(ngModel)]="formData.location" name="location" placeholder="Location" required>
+  <input type="text" [(ngModel)]="formData.incidentType" name="incidentType" placeholder="Incident Type" required>
+  <textarea [(ngModel)]="formData.remarks" name="remarks" placeholder="Remarks"></textarea>
+    <select [(ngModel)]="formData.damageLevel" name="damageLevel" placeholder="damageLevel">
+      <option>Minor</option>
+      <option>Moderate</option>
+      <option>Severe</option>
+    </select>
+  <button type="submit">{{ editingId ? 'Update' : 'Save' }}</button>
+</form>
+
+<hr>
+
+<h3>Recorded Incidents</h3>
+<ul>
+  <li *ngFor="let item of incidents">
+    {{ item.date }} - {{ item.location }} - {{ item.incidentType }}
+    <button (click)="editRecord(item)">Edit</button>
+    <button (click)="deleteRecord(item.id)">Delete</button>
+  </li>
+</ul>

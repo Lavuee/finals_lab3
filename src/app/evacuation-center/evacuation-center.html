@@ -1,0 +1,25 @@
+<h2>Evacuation Center Status</h2>
+
+<form (ngSubmit)="saveRecord()">
+  <input type="text" [(ngModel)]="formData.centerName" name="centerName" placeholder="Center Name" required>
+  <input type="text" [(ngModel)]="formData.barangay" name="barangay" placeholder="Barangay" required>
+  <input type="number" [(ngModel)]="formData.capacity" name="capacity" placeholder="Capacity" required>
+  <input type="number" [(ngModel)]="formData.currentPopulation" name="currentPopulation" placeholder="Current Population" required>
+  <select [(ngModel)]="formData.status" name="status" placeholder="status">
+    <option>Open</option>
+    <option>Full</option>
+    <option>Under Maintenance</option>
+  </select>
+  <button type="submit">{{ editingId ? 'Update' : 'Save' }}</button>
+</form>
+
+<hr>
+
+<h3>Evacuation Centers</h3>
+<ul>
+  <li *ngFor="let item of centers">
+    {{ item.centerName }} - {{ item.status }} ({{ item.currentPopulation }}/{{ item.capacity }})
+    <button (click)="editRecord(item)">Edit</button>
+    <button (click)="deleteRecord(item.id)">Delete</button>
+  </li>
+</ul>

@@ -1,0 +1,21 @@
+<h2>Relief Distribution</h2>
+
+<form (ngSubmit)="saveRecord()">
+  <input type="date" [(ngModel)]="formData.date" name="date" required>
+  <input type="text" [(ngModel)]="formData.barangay" name="barangay" placeholder="Barangay" required>
+  <input type="number" [(ngModel)]="formData.numberOfFamilies" name="numberOfFamilies" placeholder="Families Assisted" required>
+  <input type="text" [(ngModel)]="formData.reliefItems" name="reliefItems" placeholder="Relief Items" required>
+  <input type="text" [(ngModel)]="formData.distributedBy" name="distributedBy" placeholder="Distributed By" required>
+  <button type="submit">{{ editingId ? 'Update' : 'Save' }}</button>
+</form>
+
+<hr>
+
+<h3>Recorded Distributions</h3>
+<ul>
+  <li *ngFor="let item of distributions">
+    {{ item.date }} - {{ item.barangay }} - {{ item.numberOfFamilies }} families
+    <button (click)="editRecord(item)">Edit</button>
+    <button (click)="deleteRecord(item.id)">Delete</button>
+  </li>
+</ul>
